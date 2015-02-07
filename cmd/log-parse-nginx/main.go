@@ -1,26 +1,24 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"os"
-	//	"strings"
 )
 
 func main() {
-
 	arg := os.Args[1]
-	fmt.Printf(arg)
 
 	f, err := os.Open(arg)
 	check(err)
 
-	b1 := make([]byte, 100)
-	n1, err := f.Read(b1)
-	check(err)
-	fmt.Printf("%d bytes: %s\n", n1, string(b1))
-
-	//	lines := strings.Split(string(b1), "\n")
-	fmt.Printf("--%s--\n", b1)
+	scanner := bufio.NewScanner(f)
+	for scanner.Scan() {
+		fmt.Println(scanner.Text()) // Println will add back the final '\n'
+	}
+	if err := scanner.Err(); err != nil {
+		fmt.Fprintln(os.Stderr, "error reading arginput:", err)
+	}
 }
 
 // from https://gobyexample.com/reading-files
