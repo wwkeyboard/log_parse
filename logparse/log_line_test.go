@@ -18,4 +18,8 @@ func TestLogLineParse(t *testing.T) {
 	if ll.IP != "162.243.191.67" {
 		t.Error("IP didn't parse correctly")
 	}
+
+	if ll.At != "[30/Jan/2015:04:15:37 +0000]" {
+		t.Error("Time not parsed correctle")
+	}
 }

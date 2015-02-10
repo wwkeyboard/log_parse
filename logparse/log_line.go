@@ -2,12 +2,11 @@ package log_parse
 
 import (
 	"strings"
-	"time"
 )
 
 type LogLine struct {
 	IP       string // address of the caller
-	At       time.Time
+	At       string
 	Method   string // request method
 	Path     string
 	Response int
